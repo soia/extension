@@ -1,0 +1,38 @@
+#root {
+    box-sizing: border-box;
+    width: 375px;
+    margin: 0 auto;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+// remove arrows for input type number
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+// custom scrollbar
+
+::-webkit-scrollbar {
+    width: 0.7vw;
+}
+
+::-webkit-scrollbar-track {
+    background: #fff;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #555
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #222
+}
+
+// custom scrollbar

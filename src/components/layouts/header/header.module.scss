@@ -1,0 +1,11 @@
+@import "../../assets/styles/variables";
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    height: 80px;
+    padding: 40px;
+    font-family: $FuturaPT;
+    color: $greyColor;
+    font-size: 20px;
+}

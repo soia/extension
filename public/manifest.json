@@ -1,0 +1,31 @@
+{
+  "manifest_version": 2,
+
+  "name": "Decentralized wallets Plugin",
+  "description": "Decentralized wallets Plugin",
+  "version": "0.0.1",
+
+  "browser_action": {
+    "default_popup": "index.html",
+    "default_title": "Open the popup"
+  },
+  "icons": {
+    "16": "logo48.png",
+    "48": "logo48.png",
+    "128": "logo128.png"
+  },
+  "background": {
+    "scripts": [
+      "background/background.js"
+    ]
+  },
+  "content_security_policy": "script-src 'self' 'sha256-Ovgy4WYgn2bbhcYX6S3m6bNTpCYKKLSUCx1MJ1Fe8fQ='; object-src 'self'",  
+  "permissions": [
+    "tabs",
+    "webRequest",
+    "webRequestBlocking",
+    "activeTab",
+    "storage",
+    "http://testnet-info.blockchain.mn/*"
+  ]
+}

@@ -1,0 +1,27 @@
+@import "../../../assets/styles/variables";
+
+.somePage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: $FuturaPT;
+    color: $greyColor;
+    font-size: 40px;
+}
+
+.wrappper {
+    margin: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &__item {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        max-width: 880px;
+        margin-bottom: 40px;
+    }
+}
