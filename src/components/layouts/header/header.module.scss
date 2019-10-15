@@ -3,9 +3,16 @@
 .header {
     display: flex;
     justify-content: space-between;
-    height: 80px;
-    padding: 40px;
-    font-family: $FuturaPT;
-    color: $greyColor;
-    font-size: 20px;
+    padding: 15px 25px;
+
+    &__logo {
+        width: 30px;
+        height: 30px;
+    }
+
+    &__dropDown {
+        &_img {
+            margin-right: 10px;
+        }
+    }
 }

@@ -16,10 +16,10 @@
   },
   "background": {
     "scripts": [
-      "background/background.js"
+      "background.js"
     ]
   },
-  "content_security_policy": "script-src 'self' 'sha256-Ovgy4WYgn2bbhcYX6S3m6bNTpCYKKLSUCx1MJ1Fe8fQ='; object-src 'self'",  
+  "content_security_policy": "script-src 'self' 'sha256-Ovgy4WYgn2bbhcYX6S3m6bNTpCYKKLSUCx1MJ1Fe8fQ='; object-src 'self'",
   "permissions": [
     "tabs",
     "webRequest",

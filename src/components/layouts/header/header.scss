@@ -1,0 +1,45 @@
+@import "../../assets/styles/variables";
+
+.header {
+    &__dropDown {
+        width: 178px;
+        color: $greyColor;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+
+        .ant-select-selection {
+            width: 100%;
+        }
+
+        .ant-select-selection-selected-value {
+            display: flex !important;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            line-height: 17px;
+            font-family: $SFCompactRounded;
+            color: $greyColor;
+        }
+
+        .ant-select-selection--single {
+            border: none;
+            display: flex;
+        }
+
+        .ant-select-selection__rendered {
+            display: flex;
+            align-items: center;
+        }
+
+        .ant-select-dropdown-menu-item {
+            display: flex;
+        }
+
+        .ant-select-arrow .ant-select-arrow-icon svg {
+            fill: $darkGreyColor;
+            width: 16px;
+            height: 13px;
+        }
+    }
+}
