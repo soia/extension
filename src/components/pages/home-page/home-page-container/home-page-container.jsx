@@ -39,11 +39,19 @@ class HomePageContainer extends Component {
     };
 
     switcDetails = id => {
-        const { showDetailsBool } = this.state;
+        const { showDetails, showDetailsBool } = this.state;
         this.setState({
             showDetails: id,
-            showDetailsBool: !showDetailsBool,
         });
+        if (showDetails === id) {
+            this.setState({
+                showDetailsBool: !showDetailsBool,
+            });
+        } else {
+            this.setState({
+                showDetailsBool: true,
+            });
+        }
     }
 
     checkCopiedStatus = () => {

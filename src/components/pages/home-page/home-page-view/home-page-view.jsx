@@ -4,11 +4,20 @@ import { useTranslation } from 'react-i18next';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import btc from '../../../assets/images/coins/btc.svg';
+import redArrow from '../../../assets/images/redArrow.svg';
+import purpleArrow from '../../../assets/images/purple.svg';
+import pathIcon from '../../../assets/images/Path.svg';
+import infoIcon from '../../../assets/images/infoIcon.svg';
+import timeIcon from '../../../assets/images/timeIcon.svg';
 import style from './home-page-view.module.scss';
 import Button from '../../../UI/button';
 
 const HomePageView = ({
-    switcDetails, showDetails, checkCopiedStatus, showDetailsBool, copyText,
+    switcDetails,
+    showDetails,
+    checkCopiedStatus,
+    showDetailsBool,
+    copyText,
 }) => {
     const { t } = useTranslation();
 
@@ -126,14 +135,93 @@ const HomePageView = ({
                                         {t('general.copy')}
                                     </Button>
                                 </CopyToClipboard>
-                                <Button
-                                    id="explorer"
-                                    type="button"
-                                    name="explorer"
+                                <a
+                                    href="#1"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
                                     className={style.totalBalance__sendBtn}
                                 >
-                                Explorer
-                                </Button>
+                                    Explorer
+                                </a>
+                            </div>
+                            <div className={style.history__table_fromTo}>
+                                <img src={redArrow} alt="redArrow" />
+                                <div>
+                                    <p className={style.history__table_fromTitle}>
+                                        {t('general.from')}
+                                    </p>
+                                    <p className={style.history__table_fromWallet}>
+                                        0xf9402a0xf9402a15ddfd4becf6c15ddfd4becf6c
+                                    </p>
+                                </div>
+                            </div>
+                            <div className={style.history__table_pathIconWrapper}>
+                                <img src={pathIcon} alt="pathIcon" />
+                            </div>
+                            <div className={style.history__table_fromTo}>
+                                <img src={purpleArrow} alt="purpleArrow" />
+                                <div>
+                                    <p className={style.history__table_fromTitle}>
+                                        {t('general.to')}
+                                    </p>
+                                    <p className={style.history__table_fromWallet}>
+                                        0xf9402a0xf9402a15ddfd4becf6c15ddfd4becf6c
+                                    </p>
+                                </div>
+                            </div>
+                            <div className={style.history__table_amountTime}>
+                                <img src={infoIcon} alt="infoIcon" />
+                                <div>
+                                    <p className={style.history__table_amountTimeTitle}>
+                                        {t('general.amount')}
+                                    </p>
+                                    <p
+                                        className={
+                                            style.history__table_amountTimeSubTitle
+                                        }
+                                    >
+                                        {t('general.transaction')} {t('general.fee')}
+                                    </p>
+                                </div>
+                                <div className={style.history__table_amountTimeRightSide}>
+                                    <p className={style.history__table_amountTimeTitle}>
+                                        - 42 ETH
+                                    </p>
+                                    <p
+                                        className={
+                                            style.history__table_amountTimeSubTitle
+                                        }
+                                    >
+                                        0.000189 ETH
+                                    </p>
+                                </div>
+                            </div>
+                            <div className={style.history__table_amountTime}>
+                                <img src={timeIcon} alt="timeIcon" />
+                                <div>
+                                    <p className={style.history__table_amountTimeTitle}>
+                                        {t('general.time')}
+                                    </p>
+                                    <p
+                                        className={
+                                            style.history__table_amountTimeSubTitle
+                                        }
+                                    >
+                                        {t('general.transaction')} {t('general.date')}
+                                    </p>
+                                </div>
+                                <div className={style.history__table_amountTimeRightSide}>
+                                    <p className={style.history__table_amountTimeRightSideTitle}>
+                                        00:00:00
+                                    </p>
+                                    <p
+                                        className={
+                                            style.history__table_amountTimeRightSideSubTitle
+                                        }
+                                    >
+                                        10/08/2019
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -145,10 +233,18 @@ const HomePageView = ({
 
 HomePageView.defaultProps = {
     switcDetails: () => {},
+    checkCopiedStatus: () => {},
+    showDetails: null,
+    showDetailsBool: false,
+    copyText: '',
 };
 
 HomePageView.propTypes = {
     switcDetails: PropTypes.func,
+    checkCopiedStatus: PropTypes.func,
+    showDetails: PropTypes.any,
+    showDetailsBool: PropTypes.bool,
+    copyText: PropTypes.string,
 };
 
 export default HomePageView;
