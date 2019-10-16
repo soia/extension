@@ -4,13 +4,14 @@ import { withTranslation } from 'react-i18next';
 import SomeView from '../some-view';
 import Spinner from '../../../spinner';
 import ErrorIndicator from '../../error-page/error-indicator';
-import { DummyService } from '../../../../services';
+import DummyService from '../../../../services/dummy-service';
 import { withStoreService } from '../../../hoc';
 import { compose } from '../../../../utils';
 import Actions from '../../../../common/class.actions';
 
 class SomeContainer extends Component {
     dummyService = new DummyService();
+
     actions = new Actions();
 
     state = {
@@ -43,7 +44,7 @@ class SomeContainer extends Component {
     };
 
     testBtn = async () => {
-        let mnemonic = await new Promise((resolve, reject) => {
+        const mnemonic = await new Promise((resolve, reject) => {
             window.chrome.runtime.sendMessage(
                 { action: this.actions.getBackground().generationMnemonic },
                 response => {

@@ -149,6 +149,7 @@
             flex-wrap: wrap;
             background: $white;
             border-radius: 2px;
+            margin-bottom: 15px;
         }
 
         &_title {
@@ -158,12 +159,13 @@
             margin-bottom: 8px;
         }
 
-        &_status {
+        &_statusPurple,
+        &_statusRed,
+        &_statusYellow {
             display: flex;
             align-items: center;
             justify-content: center;
             font-family: $SFCompactRounded;
-            background: $purple100Color;
             border-radius: 10px;
             font-weight: bold;
             font-size: 8px;
@@ -173,13 +175,34 @@
             height: 16px;
         }
 
-        &_cryptoCurrency {
+        &_statusPurple {
+            background: $purple100Color;
+        }
+
+        &_statusRed {
+            background: $redColor;
+        }
+
+        &_statusYellow {
+            background: $yellowColor;
+        }
+
+        &_cryptoCurrencyRed,
+        &_cryptoCurrencyPurple {
             font-family: $SFCompactRounded;
             font-size: 14px;
             text-align: right;
-            color: $redColor;
+
             margin-bottom: 8px;
             user-select: none;
+        }
+
+        &_cryptoCurrencyRed {
+            color: $redColor;
+        }
+
+        &_cryptoCurrencyPurple {
+            color: $purple100Color;
         }
 
         &_price {
@@ -238,7 +261,7 @@
         }
 
         &_amountTimeTitle,
-        &_amountTimeRightSideTitle {
+        &_rightSideTitle {
             font-family: $SFCompactRounded;
             font-size: 14px;
             color: $black;
@@ -250,7 +273,7 @@
         }
 
         &_amountTimeSubTitle,
-        &_amountTimeRightSideSubTitle {
+        &_rightSideSubTitle {
             font-family: $SFCompactRounded;
             font-size: 10px;
             color: #4A4A4A;
@@ -264,8 +287,8 @@
             margin-left: auto;
         }
 
-        &_amountTimeRightSideTitle,
-        &_amountTimeRightSideSubTitle  {
+        &_rightSideTitle,
+        &_rightSideSubTitle  {
             text-align: right;
         }
     }

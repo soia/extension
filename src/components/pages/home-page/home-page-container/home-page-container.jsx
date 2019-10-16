@@ -3,6 +3,7 @@ import { withTranslation } from 'react-i18next';
 import { message } from 'antd';
 import PropTypes from 'prop-types';
 
+import DummyService from '../../../../services/dummy-service';
 import HomePageView from '../home-page-view';
 import Spinner from '../../../spinner';
 import ErrorIndicator from '../../error-page/error-indicator';
@@ -10,13 +11,33 @@ import { compose } from '../../../../utils';
 import Actions from '../../../../common/class.actions';
 
 class HomePageContainer extends Component {
+    dummyService = new DummyService();
+
     actions = new Actions();
 
     state = {
+        history: [],
         showDetails: null,
         loading: false,
         showDetailsBool: false,
-        copyText: 'https://etherscan.io/tx/',
+    };
+
+    componentDidMount() {
+        this.loadData();
+    }
+
+    loadData = () => {
+        this.dummyService
+            .getAllHistory()
+            .then(history => {
+                this.setState({
+                    history,
+                    loading: false,
+                    error: false,
+                });
+                console.log(history, 'history');
+            })
+            .catch(this.onError);
     };
 
     onError = () => {
@@ -52,16 +73,20 @@ class HomePageContainer extends Component {
                 showDetailsBool: true,
             });
         }
-    }
+    };
 
     checkCopiedStatus = () => {
         const { t } = this.props;
         message.success(t('general.successfullyCopied'), 2);
-    }
+    };
 
     render() {
         const {
-            showDetails, showDetailsBool, copyText, loading, error,
+            showDetails,
+            showDetailsBool,
+            loading,
+            error,
+            history,
         } = this.state;
 
         const hasData = !(loading || error);
@@ -72,7 +97,7 @@ class HomePageContainer extends Component {
             <HomePageView
                 showDetails={showDetails}
                 showDetailsBool={showDetailsBool}
-                copyText={copyText}
+                history={history}
                 testBtn={this.testBtn}
                 checkCopiedStatus={this.checkCopiedStatus}
                 switcDetails={this.switcDetails}
@@ -97,6 +122,4 @@ HomePageContainer.propTypes = {
     t: PropTypes.func,
 };
 
-export default compose(
-    withTranslation(),
-)(HomePageContainer);
+export default compose(withTranslation())(HomePageContainer);

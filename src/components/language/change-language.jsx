@@ -5,7 +5,7 @@ import 'antd/dist/antd.css';
 
 function SelectLangeage() {
     if (localStorage.getItem('i18nextLng') === null) {
-        localStorage.setItem('i18nextLng', 'rus');
+        localStorage.setItem('i18nextLng', 'GB');
     }
 
     const { Option } = Select;
@@ -17,10 +17,10 @@ function SelectLangeage() {
     };
 
     return (
-        <Select defaultValue="rus" onChange={changeLanguage} style={{ width: 120 }}>
-            <Option value="rus">Рус</Option>
-            <Option value="ukr">Укр</Option>
-            <Option value="en-GB">Eng</Option>
+        <Select defaultValue="GB" onChange={changeLanguage} style={{ width: 120 }}>
+            <Option value="RU">Рус</Option>
+            <Option value="UKR">Укр</Option>
+            <Option value="GB">Eng</Option>
         </Select>
     );
 }

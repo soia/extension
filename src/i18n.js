@@ -4,8 +4,8 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from 'react-i18next';
 
 const options = {
-    fallbackLng: 'en-GB',
-    whitelist: ['en-GB', 'rus', 'ukr'],
+    fallbackLng: 'GB',
+    whitelist: ['GB', 'RU', 'UKR'],
     ns: ['translation'],
     defaultNS: 'translation',
     debug: false,
