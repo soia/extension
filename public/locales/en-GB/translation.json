@@ -20,7 +20,8 @@
         "time": "Time",
         "date": "Date",
         "info": "Info",
-        "yourAddress": "Your Address"
+        "yourAddress": "Your Address",
+        "successfullyCopied": "Successfully copied"
     },
     "error": {
         "title": "Something went wrong."

@@ -20,7 +20,8 @@
         "time": "Время",
         "date": "Дата",
         "info": "Информация",
-        "yourAddress": "Ваш адрес"
+        "yourAddress": "Ваш адрес",
+        "successfullyCopied": "Успешно скопировано"
     },
     "error": {
         "title": "Что-то пошло не так."

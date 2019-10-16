@@ -1,3 +1,5 @@
+@import "../assets/styles/variables";
+
 #root {
     box-sizing: border-box;
     width: 375px;
@@ -36,3 +38,9 @@ input::-webkit-inner-spin-button {
 }
 
 // custom scrollbar
+
+.ant-message-custom-content {
+    font-family: $SFCompactRounded;
+    font-size: 12px;
+    color: #4A4A4A;
+}

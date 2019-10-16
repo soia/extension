@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { withTranslation } from 'react-i18next';
+import { message } from 'antd';
+import PropTypes from 'prop-types';
 
 import HomePageView from '../home-page-view';
 import Spinner from '../../../spinner';
@@ -11,8 +13,10 @@ class HomePageContainer extends Component {
     actions = new Actions();
 
     state = {
-        training: [],
+        showDetails: null,
         loading: false,
+        showDetailsBool: false,
+        copyText: 'https://etherscan.io/tx/',
     };
 
     onError = () => {
@@ -34,8 +38,23 @@ class HomePageContainer extends Component {
         console.log('console.log testBtn', mnemonic);
     };
 
+    switcDetails = id => {
+        const { showDetailsBool } = this.state;
+        this.setState({
+            showDetails: id,
+            showDetailsBool: !showDetailsBool,
+        });
+    }
+
+    checkCopiedStatus = () => {
+        const { t } = this.props;
+        message.success(t('general.successfullyCopied'), 2);
+    }
+
     render() {
-        const { training, loading, error } = this.state;
+        const {
+            showDetails, showDetailsBool, copyText, loading, error,
+        } = this.state;
 
         const hasData = !(loading || error);
 
@@ -43,8 +62,12 @@ class HomePageContainer extends Component {
         const spinner = loading ? <Spinner /> : null;
         const content = hasData ? (
             <HomePageView
-                training={training}
+                showDetails={showDetails}
+                showDetailsBool={showDetailsBool}
+                copyText={copyText}
                 testBtn={this.testBtn}
+                checkCopiedStatus={this.checkCopiedStatus}
+                switcDetails={this.switcDetails}
             />
         ) : null;
 
@@ -57,6 +80,14 @@ class HomePageContainer extends Component {
         );
     }
 }
+
+HomePageContainer.defaultProps = {
+    t: () => {},
+};
+
+HomePageContainer.propTypes = {
+    t: PropTypes.func,
+};
 
 export default compose(
     withTranslation(),

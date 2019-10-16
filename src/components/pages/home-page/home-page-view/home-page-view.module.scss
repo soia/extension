@@ -91,3 +91,113 @@
         @include purpleBtnWithOutBackground;
     }
 }
+
+.history {
+    margin: 0 25px 20px;
+    padding: 15px 20px;
+    background: $smokeColor;
+    border-radius: 2px;
+
+    &__title {
+        font-size: 16px;
+        line-height: 20px;
+        letter-spacing: 0.3px;
+        color:$lightBalckColor;
+        font-family: $SFCompactRounded;
+        margin-bottom: 25px;
+    }
+
+    &__table {
+        &_wrapper {
+            margin-bottom: 15px;
+        }
+
+        &_itemTopBlock {
+            padding: 16px 20px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        &_itemBottomBlock,
+        &_itemBottomBlockShow {
+            padding: 5px 20px;
+            transition: all 0.25s;
+        }
+
+        &_itemBottomBlock {
+            opacity: 0;
+            overflow: hidden;
+            padding: 0 20px;
+            height: 0;
+        }
+
+        &_itemBottomBlockShow {
+            height: 100%;
+        }
+
+        &_date {
+            font-family: $SFCompactRounded;
+            margin: 0 20px 10px 20px;
+            font-size: 10px;
+            text-transform: uppercase;
+            color: $black;
+        }
+
+        &_item {
+            flex-wrap: wrap;
+            background: $white;
+            border-radius: 2px;
+        }
+
+        &_title {
+            font-size: 14px;
+            color: $black;
+            font-family: $SFCompactRounded;
+            margin-bottom: 8px;
+        }
+
+        &_status {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: $SFCompactRounded;
+            background: $purple100Color;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 8px;
+            text-transform: uppercase;
+            color: $white;
+            width: 68px;
+            height: 16px;
+        }
+
+        &_cryptoCurrency {
+            font-family: $SFCompactRounded;
+            font-size: 14px;
+            text-align: right;
+            color: $redColor;
+            margin-bottom: 8px;
+        }
+
+        &_price {
+            font-family: $SFCompactRounded;
+            font-size: 10px;
+            text-align: right;
+            color: #4A4A4A;
+        }
+
+        &_details {
+            font-family: $SFCompactRounded;
+            font-size: 10px;
+            text-transform: uppercase;
+            color: $black;
+        }
+    }
+
+    &__buttonWrapper {
+        display: flex;
+        justify-content: space-between;
+        margin: 10px 0 15px 5px;
+    }
+}

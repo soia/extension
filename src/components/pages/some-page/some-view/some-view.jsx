@@ -18,9 +18,9 @@ const SomeView = ({ training, testBtn }) => {
 export default SomeView;
 
 SomeView.defaultProps = {
-    training: []
+    training: [],
 };
 
 SomeView.propTypes = {
-    training: PropTypes.instanceOf(Array)
+    training: PropTypes.instanceOf(Array),
 };

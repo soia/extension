@@ -1,8 +1,8 @@
 {
-    "TotalBalance": {
+    "totalBalance": {
         "Title": "Підсумковий баланс:"
     },
-    "General": {
+    "general": {
         "Deposit": "Депозит",
         "Send": "Відправити",
         "Sent": "Відправлено",
@@ -20,9 +20,10 @@
         "Time": "Час",
         "Date": "Дата",
         "Info": "Інформація",
-        "YourAddress": "Ваша адреса"
+        "YourAddress": "Ваша адреса",
+        "successfullyCopied": "Успішно скопійовано"
     },
-    "Error": {
+    "error": {
         "Title": "Щось пішло не так."
     }
 }
