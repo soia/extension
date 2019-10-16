@@ -44,6 +44,6 @@
         "react/forbid-prop-types": 0,
         "import/no-named-as-default": 0,
         "max-len": [1, 100, 4],
-        "react/no-did-update-set-state": 0,
+        "react/no-did-update-set-state": 0
     }
 }

@@ -1,0 +1,43 @@
+@mixin mainBtnStyle {
+    cursor: pointer;
+    outline: none;
+    text-transform: uppercase;
+    font-size: 0.8vw;
+    line-height: 1vw;
+    letter-spacing: 0.05vw;
+    padding: 0 1.2vw;
+    transition: all 0.25s;
+    border-radius: 0.1vw;
+}
+
+@mixin fillBtnWithBorderAndBackground {
+    border: 1px solid transparent;
+    color: $white;
+
+    &:hover {
+        background-color: transparent;
+        transition: all 0.25s;
+    }
+}
+
+@mixin purpleBtnWithBorderAndBackground {
+    @include fillBtnWithBorderAndBackground;
+    background-color: $purple100Color;
+
+    &:hover {
+        border: 1px solid $purple100Color;
+        color: $purple100Color;
+    }
+}
+
+@mixin purpleBtnWithOutBackground {
+    @include fillBtnWithBorderAndBackground;
+    background-color: transparent;
+    color: $purple100Color;
+    border: 1px solid $purple100Color;
+
+    &:hover {
+        background-color: $purple100Color;
+        color: $white;
+    }
+}

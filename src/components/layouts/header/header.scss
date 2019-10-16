@@ -8,38 +8,64 @@
         justify-content: space-between;
         align-items: flex-end;
 
-        .ant-select-selection {
-            width: 100%;
-        }
+        .ant-select {
+            &-selection {
+                width: 100%;
+            }
 
-        .ant-select-selection-selected-value {
-            display: flex !important;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 14px;
-            line-height: 17px;
-            font-family: $SFCompactRounded;
-            color: $greyColor;
-        }
+            &-selection-selected-value {
+                display: flex !important;
+                justify-content: space-between;
+                align-items: center;
+                font-size: 14px;
+                line-height: 17px;
+                font-family: $SFCompactRounded;
+                color: $greyColor;
+            }
 
-        .ant-select-selection--single {
-            border: none;
-            display: flex;
-        }
+            &-selection--single {
+                border: none;
+                display: flex;
+            }
 
-        .ant-select-selection__rendered {
-            display: flex;
-            align-items: center;
-        }
-
-        .ant-select-dropdown-menu-item {
-            display: flex;
+            &-selection__rendered {
+                display: flex;
+                align-items: center;
+            }
         }
 
         .ant-select-arrow .ant-select-arrow-icon svg {
             fill: $darkGreyColor;
             width: 16px;
             height: 13px;
+        }
+
+        .ant-select-focused .ant-select-selection,
+        .ant-select-selection:focus,
+        .ant-select-selection:active {
+            box-shadow: 0 0 0 2px $purple10Color;
+        }
+
+        &_item {
+            .ant-select {
+                &-dropdown-menu-item {
+                    display: flex;
+                    padding: 15px 20px;
+                    font-size: 12px;
+                    font-weight: normal;
+                    font-family: $SFCompactRounded;
+                }
+
+                &-dropdown-menu {
+                    max-height: 260px;
+                }
+            }
+
+            .ant-select-dropdown-menu-item:hover:not(.ant-select-dropdown-menu-item-disabled),
+            .ant-select-dropdown-menu-item-selected {
+                background-color: $purple10Color;
+                color: $purple100Color;
+            }
         }
     }
 }

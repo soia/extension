@@ -1,12 +1,7 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 
-import style from './home-page.module.scss';
+import HomePageContainer from './home-page-container';
 
-const HomePage = () => {
-    const { t } = useTranslation();
-
-    return <div className={style.homePage}>{t('test.homepage')}</div>;
-};
+const HomePage = () => <HomePageContainer />;
 
 export default HomePage;

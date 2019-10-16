@@ -1,10 +1,26 @@
 {
-    "test": {
-        "gotosomepage": "Go to some page",
-        "header": "Header",
-        "footer": "Footer",
-        "homepage": "Home page",
-        "somepage": "Some page"
+    "totalBalance": {
+        "title": "Total balance:"
+    },
+    "general": {
+        "deposit": "Deposit",
+        "send": "Send",
+        "sent": "Sent",
+        "history": "History",
+        "confirm": "Confirm",
+        "failed": "Failed",
+        "pending": "Pending",
+        "details": "Details",
+        "copy": "Copy",
+        "from": "From",
+        "to": "To",
+        "amount": "Amount",
+        "transaction": "Transaction",
+        "fee": "Fee",
+        "time": "Time",
+        "date": "Date",
+        "info": "Info",
+        "yourAddress": "Your Address"
     },
     "error": {
         "title": "Something went wrong."

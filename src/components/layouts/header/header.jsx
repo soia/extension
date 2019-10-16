@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
 import { Select } from 'antd';
 
 import logo from '../../assets/images/logo.svg';
@@ -15,7 +14,6 @@ import style from './header.module.scss';
 import './header.scss';
 
 const Header = () => {
-    const { t } = useTranslation();
     const { Option } = Select;
 
     const handleChange = value => {
@@ -31,6 +29,7 @@ const Header = () => {
                 defaultValue="BTC"
                 className="header__dropDown"
                 onChange={handleChange}
+                dropdownClassName="header__dropDown_item"
             >
                 <Option value="BTC">
                     <img className={style.header__dropDown_img} src={btc} alt="btc" /> BTC, Bitcoin
