@@ -72,8 +72,8 @@
     &__depositBtn,
     &__sendBtn {
         @include mainBtnStyle;
-        width: 106px;
-        height: 24px;
+        width: 108px;
+        height: 36px;
         border-radius: 14px;
         font-family: $SFCompactRounded;
         font-weight: bold;
@@ -89,6 +89,7 @@
 
     &__sendBtn {
         @include purpleBtnWithOutBackground;
+        margin-left: 10px;
     }
 }
 
@@ -297,5 +298,80 @@
         display: flex;
         justify-content: space-between;
         margin: 10px 0 20px 5px;
+    }
+}
+
+.depositModal {
+    &__title {
+        font-family: $SFCompactRounded;
+        font-size: 20px;
+        color: $darkGreyColor;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 45px;
+
+        img {
+            cursor: pointer;
+        }
+    }
+
+    &__QRCode {
+        margin: 20px 25px;
+        border: 1px solid #D0CCCC;
+        border-radius: 2px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 75px;
+
+        canvas {
+            width: 175px !important;
+            height: 175px !important;
+        }
+    }
+
+    &__details {
+        margin: 0 25px 20px 25px;
+        padding: 20px 40px 20px 40px;
+        background: $smokeColor;
+        border-radius: 2px;
+
+        &_title {
+            font-family: $SFCompactRounded;
+            font-size: 10px;
+            text-transform: uppercase;
+            color: $black;
+        }
+
+        &_addressWrapper {
+            display: flex;
+            margin: 32px 0 21px 0;
+
+            img {
+                margin-right: 20px;
+            }
+        }
+
+        &_addressTitle {
+            font-family: $SFCompactRounded;
+            font-size: 10px;
+            color: #4A4A4A;
+            margin-bottom: 5px;
+        }
+
+        &_addressInput {
+            font-family: $SFCompactRounded;
+            font-weight: 300;
+            font-size: 24px;
+            color: $black;
+            background-color: transparent;
+            border: none;
+            padding: 0;
+            width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            outline: none;
+        }
     }
 }

@@ -44,3 +44,37 @@ input::-webkit-inner-spin-button {
     font-size: 12px;
     color: #4A4A4A;
 }
+
+.ant-tooltip-inner {
+    font-size: 13px;
+    font-family: $SFCompactRounded;
+    background-color: $purple100Color !important;
+    border-radius: 3px !important;
+}
+
+.ant-tooltip-arrow {
+    border-top-color: $purple100Color !important;
+}
+
+// modal overlay
+
+.modalOverlay {
+    position: fixed;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 10001;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 375px;
+}
+
+.ReactModal__Body--open {
+    overflow: hidden;
+}
+
+.ant-message {
+    z-index: 10002 !important;
+}
+
+// modal overlay

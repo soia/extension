@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import Moment from 'react-moment';
+import { Tooltip } from 'antd';
+import Modal from 'react-modal';
+import QRCode from 'qrcode.react';
 
 import btc from '../../../assets/images/coins/btc.svg';
 import redArrow from '../../../assets/images/redArrow.svg';
@@ -10,11 +13,15 @@ import purpleArrow from '../../../assets/images/purple.svg';
 import pathIcon from '../../../assets/images/Path.svg';
 import infoIcon from '../../../assets/images/infoIcon.svg';
 import timeIcon from '../../../assets/images/timeIcon.svg';
-import style from './home-page-view.module.scss';
+import closeIcon from '../../../assets/images/close.svg';
+import picAddress from '../../../assets/images/picAddress.svg';
 import Button from '../../../UI/button';
 import {
     SENT, CONFIRM, FAILED, PENDING,
 } from '../../../../constants';
+
+import style from './home-page-view.module.scss';
+import './home-page-view.scss';
 
 const HomePageView = ({
     switcDetails,
@@ -22,6 +29,8 @@ const HomePageView = ({
     checkCopiedStatus,
     showDetailsBool,
     history,
+    visibleDepositModal,
+    depositModal,
 }) => {
     const { t } = useTranslation();
 
@@ -42,6 +51,7 @@ const HomePageView = ({
                         id="deposit"
                         name="deposit"
                         type="button"
+                        onClick={() => depositModal()}
                         className={style.totalBalance__depositBtn}
                     >
                         {t('general.deposit')}
@@ -61,10 +71,7 @@ const HomePageView = ({
                 <p className={style.history__title}>{t('general.history')}</p>
 
                 {history.map(item => {
-                    const {
-                        date,
-                        data,
-                    } = item;
+                    const { date, data } = item;
 
                     return (
                         <Fragment key={date}>
@@ -76,7 +83,7 @@ const HomePageView = ({
                                 </p>
                             </div>
 
-                            { data.map(items => {
+                            {data.map(items => {
                                 const {
                                     id,
                                     action,
@@ -85,13 +92,14 @@ const HomePageView = ({
                                     moneyQuantity,
                                     copy,
                                     explorer,
-                                    fromWallet,
-                                    toWallet,
-                                    transactionFee,
+                                    fromAddress,
+                                    toAddress,
+                                    txFee,
                                 } = items;
 
                                 const actionType = SENT === action
-                                    ? t('general.sent') : t('general.deposit');
+                                    ? t('general.sent')
+                                    : t('general.deposit');
 
                                 const cryptoCurrencyStyle = SENT === action
                                     ? style.history__table_cryptoCurrencyRed
@@ -121,9 +129,7 @@ const HomePageView = ({
                                                 <p className={style.history__table_title}>
                                                     {actionType} Ethereum
                                                 </p>
-                                                <p className={statusStyle}>
-                                                    {status}
-                                                </p>
+                                                <p className={statusStyle}>{status}</p>
                                             </div>
                                             <div>
                                                 <p className={cryptoCurrencyStyle}>
@@ -150,28 +156,46 @@ const HomePageView = ({
                                                     text={copy}
                                                     onCopy={checkCopiedStatus}
                                                 >
-                                                    <Button
-                                                        id="CopyToClipboard"
-                                                        name="CopyToClipboard"
-                                                        type="button"
-                                                        className={style.totalBalance__depositBtn}
+                                                    <Tooltip
+                                                        placement="top"
+                                                        title={t('tooltip.copyId')}
                                                     >
-                                                        {t('general.copy')}
-                                                    </Button>
+                                                        <button
+                                                            id="CopyToClipboard"
+                                                            name="CopyToClipboard"
+                                                            type="button"
+                                                            className={
+                                                                style.totalBalance__depositBtn
+                                                            }
+                                                        >
+                                                            {t('general.copy')}
+                                                        </button>
+                                                    </Tooltip>
                                                 </CopyToClipboard>
-                                                <a
-                                                    href={explorer}
-                                                    rel="noopener noreferrer"
-                                                    target="_blank"
-                                                    className={style.totalBalance__sendBtn}
+                                                <Tooltip
+                                                    placement="top"
+                                                    title={t('tooltip.openExplorer')}
                                                 >
-                                                    Explorer
-                                                </a>
+                                                    <a
+                                                        href={explorer}
+                                                        rel="noopener noreferrer"
+                                                        target="_blank"
+                                                        className={
+                                                            style.totalBalance__sendBtn
+                                                        }
+                                                    >
+                                                        Explorer
+                                                    </a>
+                                                </Tooltip>
                                             </div>
                                             <div className={style.history__table_fromTo}>
                                                 <img src={redArrow} alt="redArrow" />
                                                 <div>
-                                                    <p className={style.history__table_fromTitle}>
+                                                    <p
+                                                        className={
+                                                            style.history__table_fromTitle
+                                                        }
+                                                    >
                                                         {t('general.from')}
                                                     </p>
                                                     <p
@@ -179,17 +203,28 @@ const HomePageView = ({
                                                             style.history__table_fromWallet
                                                         }
                                                     >
-                                                        {fromWallet}
+                                                        {fromAddress}
                                                     </p>
                                                 </div>
                                             </div>
-                                            <div className={style.history__table_pathIconWrapper}>
+                                            <div
+                                                className={
+                                                    style.history__table_pathIconWrapper
+                                                }
+                                            >
                                                 <img src={pathIcon} alt="pathIcon" />
                                             </div>
                                             <div className={style.history__table_fromTo}>
-                                                <img src={purpleArrow} alt="purpleArrow" />
+                                                <img
+                                                    src={purpleArrow}
+                                                    alt="purpleArrow"
+                                                />
                                                 <div>
-                                                    <p className={style.history__table_fromTitle}>
+                                                    <p
+                                                        className={
+                                                            style.history__table_fromTitle
+                                                        }
+                                                    >
                                                         {t('general.to')}
                                                     </p>
                                                     <p
@@ -197,11 +232,15 @@ const HomePageView = ({
                                                             style.history__table_fromWallet
                                                         }
                                                     >
-                                                        {toWallet}
+                                                        {toAddress}
                                                     </p>
                                                 </div>
                                             </div>
-                                            <div className={style.history__table_amountTime}>
+                                            <div
+                                                className={
+                                                    style.history__table_amountTime
+                                                }
+                                            >
                                                 <img src={infoIcon} alt="infoIcon" />
                                                 <div>
                                                     <p
@@ -233,11 +272,15 @@ const HomePageView = ({
                                                             style.history__table_amountTimeSubTitle
                                                         }
                                                     >
-                                                        {transactionFee} ETH
+                                                        {txFee} ETH
                                                     </p>
                                                 </div>
                                             </div>
-                                            <div className={style.history__table_amountTime}>
+                                            <div
+                                                className={
+                                                    style.history__table_amountTime
+                                                }
+                                            >
                                                 <img src={timeIcon} alt="timeIcon" />
                                                 <div>
                                                     <p
@@ -289,6 +332,66 @@ const HomePageView = ({
                     );
                 })}
             </div>
+            <Modal
+                isOpen={visibleDepositModal}
+                onRequestClose={() => depositModal()}
+                ariaHideApp={false}
+                className="depositModal"
+                overlayClassName="modalOverlay"
+            >
+                <div className={style.depositModal}>
+                    <div className={style.depositModal__title}>
+                        <p> {t('general.deposit')} ETH</p>
+                        <div onClick={() => depositModal()}>
+                            <img src={closeIcon} alt="closeIcon" />
+                        </div>
+                    </div>
+                    <div className={style.depositModal__QRCode}>
+                        <QRCode value="http://facebook.github.io/react/" />
+                    </div>
+                    <div className={style.depositModal__details}>
+                        <p className={style.depositModal__details_title}>
+                            {t('general.details')}
+                        </p>
+                        <div className={style.depositModal__details_addressWrapper}>
+                            <img src={picAddress} alt="picAddress" />
+                            <div className={style.depositModal__details_address}>
+                                <p className={style.depositModal__details_addressTitle}>
+                                    {t('general.yourAddress')}
+                                </p>
+                                <input
+                                    className={style.depositModal__details_addressInput}
+                                    type="text"
+                                    value="0x476kdsngfjrgj4395345943549bb57717"
+                                />
+                            </div>
+                        </div>
+                        <div className={style.history__buttonWrapper}>
+                            <CopyToClipboard
+                                text="https://etherscan.io/tx/"
+                                onCopy={checkCopiedStatus}
+                            >
+                                <button
+                                    id="CopyToClipboard"
+                                    name="CopyToClipboard"
+                                    type="button"
+                                    className={style.totalBalance__depositBtn}
+                                >
+                                    {t('general.copy')}
+                                </button>
+                            </CopyToClipboard>
+                            <a
+                                href="someLink"
+                                rel="noopener noreferrer"
+                                target="_blank"
+                                className={style.totalBalance__sendBtn}
+                            >
+                                Explorer
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </Modal>
         </Fragment>
     );
 };
@@ -299,6 +402,8 @@ HomePageView.defaultProps = {
     showDetails: null,
     showDetailsBool: false,
     history: [],
+    visibleDepositModal: false,
+    depositModal: () => {},
 };
 
 HomePageView.propTypes = {
@@ -307,6 +412,8 @@ HomePageView.propTypes = {
     showDetails: PropTypes.any,
     showDetailsBool: PropTypes.bool,
     history: PropTypes.instanceOf(Array),
+    visibleDepositModal: PropTypes.bool,
+    depositModal: PropTypes.func,
 };
 
 export default HomePageView;

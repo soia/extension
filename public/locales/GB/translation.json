@@ -23,6 +23,11 @@
         "yourAddress": "Your Address",
         "successfullyCopied": "Successfully copied"
     },
+    "tooltip": {
+        "openExplorer": "Open transaction in explorer",
+        "copyId": "Copy transaction ID",
+        "copyAddress": "Copy address"
+    },
     "error": {
         "title": "Something went wrong."
     }

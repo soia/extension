@@ -1,0 +1,16 @@
+@import "../../../assets/styles/variables";
+@import "../../../assets/styles/mixin";
+
+.depositModal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background: rgb(255, 255, 255);
+    overflow: auto;
+    border-radius: 4px;
+    outline: none;
+    transform: translate(-50%, -50%);
+    width: 376px;
+    overflow: scroll;
+    height: inherit;
+}

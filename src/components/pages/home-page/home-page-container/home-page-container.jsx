@@ -20,6 +20,7 @@ class HomePageContainer extends Component {
         showDetails: null,
         loading: false,
         showDetailsBool: false,
+        visibleDepositModal: false,
     };
 
     componentDidMount() {
@@ -80,6 +81,13 @@ class HomePageContainer extends Component {
         message.success(t('general.successfullyCopied'), 2);
     };
 
+    depositModal = () => {
+        const { visibleDepositModal } = this.state;
+        this.setState({
+            visibleDepositModal: !visibleDepositModal,
+        });
+    }
+
     render() {
         const {
             showDetails,
@@ -87,6 +95,7 @@ class HomePageContainer extends Component {
             loading,
             error,
             history,
+            visibleDepositModal,
         } = this.state;
 
         const hasData = !(loading || error);
@@ -98,9 +107,11 @@ class HomePageContainer extends Component {
                 showDetails={showDetails}
                 showDetailsBool={showDetailsBool}
                 history={history}
+                visibleDepositModal={visibleDepositModal}
                 testBtn={this.testBtn}
                 checkCopiedStatus={this.checkCopiedStatus}
                 switcDetails={this.switcDetails}
+                depositModal={this.depositModal}
             />
         ) : null;
 
