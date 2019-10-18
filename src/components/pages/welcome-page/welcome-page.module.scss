@@ -1,0 +1,50 @@
+@import "../../assets/styles/variables";
+@import "../../assets/styles/mixin";
+
+.welcome {
+    padding: 60px 45px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    &__logo {
+        margin-bottom: 20px;
+
+        &_img {
+            width: 46px;
+            height: 53px;
+        }
+    }
+
+    &__title {
+        font-family: $SFCompactRoundedThin;
+        font-weight: 300;
+        font-size: 30px;
+        line-height: 40px;
+        color: $black;
+        padding-right: 25px;
+        margin-bottom: 10px;
+    }
+
+    &__subTitle {
+        font-family: $SFCompactRounded;
+        font-size: 14px;
+        line-height: 24px;
+        color: $black;
+    }
+
+    &__next {
+        @include purpleBtnWithBorderAndBackground;
+        @include mainBtnStyle;
+        width: 150px;
+        height: 36px;
+        border-radius: 18.5px;
+        font-family: $SFCompactRounded;
+        font-weight: bold;
+        font-size: 10px;
+        line-height: 10px;
+        text-align: center;
+        text-transform: uppercase;
+    }
+}

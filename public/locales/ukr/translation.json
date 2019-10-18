@@ -21,7 +21,20 @@
         "Date": "Дата",
         "Info": "Інформація",
         "YourAddress": "Ваша адреса",
-        "successfullyCopied": "Успішно скопійовано"
+        "successfullyCopied": "Успішно скопійовано",
+        "next": "Далі",
+        "create": "Створити",
+        "password": "Пароль"
+    },
+    "welcome": {
+        "title": "Ласкаво просимо в децентралізований гаманець",
+        "subTitle": "Кращий децентралізований гаманець - Ethereum Secure Wallet. Дозволяє зберігати ефіри і маркери в децентралізованих додатках."
+    },
+    "createPassword": {
+        "newPassword": "Новий пароль (мінімум 8 символів)",
+        "confirmPassword": "Підтвердіть пароль",
+        "repeatPassword": "Повторіть пароль",
+        "importSeedPhrase": "Імпортувати з вихідної фразою"
     },
     "tooltip": {
         "openExplorer": "Відкрити транзакцію в Explorer",
@@ -29,6 +42,8 @@
         "copyAddress": "Скопіювати адресу"
     },
     "error": {
-        "Title": "Щось пішло не так."
+        "Title": "Щось пішло не так.",
+        "input": "Повинен бути принаймні {{count}} символів",
+        "repeatPassword": "Пароль не відповідає"
     }
 }

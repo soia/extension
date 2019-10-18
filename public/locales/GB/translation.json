@@ -21,7 +21,20 @@
         "date": "Date",
         "info": "Info",
         "yourAddress": "Your Address",
-        "successfullyCopied": "Successfully copied"
+        "successfullyCopied": "Successfully copied",
+        "next": "Next",
+        "create": "Create",
+        "password": "Password"
+    },
+    "welcome": {
+        "title": "Welcome to Decentralized Wallet",
+        "subTitle": "The Best Decentralized Wallet - Ethereum Secure Wallet. Allows you to store ether and tokens in decentralized applications."
+    },
+    "createPassword": {
+        "newPassword": "New password (minimum 8 characters)",
+        "confirmPassword": "Confirm password",
+        "repeatPassword": "Repeat password",
+        "importSeedPhrase": "Import with seed phrase"
     },
     "tooltip": {
         "openExplorer": "Open transaction in explorer",
@@ -29,6 +42,8 @@
         "copyAddress": "Copy address"
     },
     "error": {
-        "title": "Something went wrong."
+        "title": "Something went wrong.",
+        "input": "Must be at least {{count}} characters",
+        "repeatPassword": "Password doesn't match"
     }
 }

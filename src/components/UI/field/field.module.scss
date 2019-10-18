@@ -1,26 +1,12 @@
 @import "../../assets/styles/variables";
 
-.inputWrapper {
-    max-width: 15vw;
-    width: 100%;
-    margin-bottom: 2.7vw;
-
-    @media only screen and (max-width: 767px) {
-        max-width: 100%;
-        margin-bottom: 40px;
-    }
-
-    &__invalid {
-        color: $red;
-        padding-top: .4vw;
-        font-family: $SFCompactRounded;
-        font-weight: 400;
-        font-size: 0.7vw;
-        width: 100% !important;
-
-        @media only screen and (max-width: 767px) {
-            font-size: 8px;
-            line-height: 16px;
-        }
-    }
+.invalid {
+    color: $redColor;
+    font-family: $SFCompactRoundedThin;
+    font-size: 8px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding-top: 8px;
+    position: absolute;
+    right: 0;
 }
