@@ -28,7 +28,10 @@
     },
     "welcome": {
         "title": "Welcome to Decentralized Wallet",
-        "subTitle": "The Best Decentralized Wallet - Ethereum Secure Wallet. Allows you to store ether and tokens in decentralized applications."
+        "subTitle": "The Best Decentralized Wallet - Ethereum Secure Wallet. Allows you to store ether and tokens in decentralized applications.",
+        "welcomeBack":"Welcome Back!",
+        "restoreAccount?": "Restore account?",
+        "importSeedPhrase": "Import using account seed phrase"
     },
     "createPassword": {
         "newPassword": "New password (minimum 8 characters)",
@@ -40,6 +43,13 @@
         "openExplorer": "Open transaction in explorer",
         "copyId": "Copy transaction ID",
         "copyAddress": "Copy address"
+    },
+    "secretPhrase": {
+        "title": "Secret Backup Phrase",
+        "subTitle": "You secret backup phrase makes it easy to back up restore your account.",
+        "warning": "Warning: Never disclose your backup phrase. Anyone with this phrase can take your Ether forever.",
+        "label": "Secret Phrase",
+        "revealSecretWords": "Click here to reveal secret words"
     },
     "error": {
         "title": "Something went wrong.",

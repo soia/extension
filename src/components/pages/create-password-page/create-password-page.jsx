@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { Button } from 'antd';
 
 import { compose } from '../../../utils';
 import Field from '../../UI/field';
+import {
+    SECRET_PHRASE_PATH,
+} from '../../../constants';
 
 import style from './create-password-page.module.scss';
 
@@ -29,7 +33,7 @@ class CreatePassword extends Component {
     onSubmit = event => {
         event.preventDefault();
 
-        const { t } = this.props;
+        const { t, history } = this.props;
         const { password, passwordRepeat } = this.state;
         const errors = {};
 
@@ -56,6 +60,7 @@ class CreatePassword extends Component {
                     passwordRepeat,
                     'user.password && user.passwordRepeat',
                 );
+                history.push(SECRET_PHRASE_PATH);
             }
         }
     };
@@ -132,10 +137,15 @@ class CreatePassword extends Component {
 
 CreatePassword.defaultProps = {
     t: () => {},
+    history: {},
 };
 
 CreatePassword.propTypes = {
     t: PropTypes.func,
+    history: PropTypes.object,
 };
 
-export default compose(withTranslation())(CreatePassword);
+export default compose(
+    withTranslation(),
+    withRouter,
+)(CreatePassword);

@@ -1,9 +1,9 @@
 const HOME_PAGE_PATH = '/home-page';
 const CREATE_PASSWORD = '/create-password';
-const SOME_PAGE_PATH = '/some-page';
+const SECRET_PHRASE_PATH = '/secret-phrase';
 
 export {
     HOME_PAGE_PATH,
     CREATE_PASSWORD,
-    SOME_PAGE_PATH,
+    SECRET_PHRASE_PATH,
 };
