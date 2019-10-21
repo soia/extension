@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 
-// import { sidebar } from './sidebar.reducer';
+import userPassword from './user-password.reducer';
 
 const rootReducer = combineReducers({
-    // sidebar
+    userPassword,
 });
 
 export default rootReducer;

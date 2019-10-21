@@ -1,1 +1,1 @@
-export * from './sidebar.actions';
+export * from './user-password.actions';

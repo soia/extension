@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import WalletInterface from './libs/WalletInterface';
 import ActionsClass from '../common/class.actions.js';
 let walletInterface = new WalletInterface();
@@ -6,6 +8,9 @@ const Actions = new ActionsClass();
 chrome.runtime.onMessage.addListener(
     function (request, sender, sendResponse) {
     	(async () => {
+			console.log("request",request)
+			console.log("request.action",request.action)
+			console.log("request.data",request.data)
     		switch (request.action) {
                 case (Actions.getBackground().changeProtocol):
                     walletInterface.changeProtocol(request.data);
@@ -66,5 +71,5 @@ chrome.runtime.onMessage.addListener(
 	})();
 	return true;
     }
-    
+
 );

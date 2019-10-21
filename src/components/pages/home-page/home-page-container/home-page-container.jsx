@@ -8,12 +8,9 @@ import HomePageView from '../home-page-view';
 import Spinner from '../../../spinner';
 import ErrorIndicator from '../../error-page/error-indicator';
 import { compose } from '../../../../utils';
-import Actions from '../../../../common/class.actions';
 
 class HomePageContainer extends Component {
     dummyService = new DummyService();
-
-    actions = new Actions();
 
     state = {
         history: [],
@@ -46,18 +43,6 @@ class HomePageContainer extends Component {
             error: true,
             loading: false,
         });
-    };
-
-    testBtn = async () => {
-        const mnemonic = await new Promise(resolve => {
-            window.chrome.runtime.sendMessage(
-                { action: this.actions.getBackground().generationMnemonic },
-                response => {
-                    resolve(response);
-                },
-            );
-        });
-        console.log('console.log testBtn', mnemonic);
     };
 
     switcDetails = id => {
@@ -108,7 +93,6 @@ class HomePageContainer extends Component {
                 showDetailsBool={showDetailsBool}
                 history={history}
                 visibleDepositModal={visibleDepositModal}
-                testBtn={this.testBtn}
                 checkCopiedStatus={this.checkCopiedStatus}
                 switcDetails={this.switcDetails}
                 depositModal={this.depositModal}

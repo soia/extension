@@ -1,21 +1,30 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { message } from 'antd';
-import { compose } from '../../../utils';
 
+import { compose } from '../../../utils';
 import { HOME_PAGE_PATH } from '../../../constants';
+import Actions from '../../../common/class.actions';
 
 import lock from './images/lock.svg';
 import logo from './images/logo.svg';
 import style from './secret-phrase-page.module.scss';
 
 class SecretPhrase extends Component {
+    actions = new Actions();
+
     state = {
         showSecretWords: false,
+        mnemonic: '',
     };
+
+    componentDidMount() {
+        this.generationMnemonic();
+    }
 
     onCopySecretPhrase = () => {
         const { t } = this.props;
@@ -28,9 +37,45 @@ class SecretPhrase extends Component {
         });
     };
 
+    generationMnemonic = async () => {
+        const mnemonic = await new Promise(resolve => {
+            window.chrome.runtime.sendMessage(
+                { action: (this.actions.getBackground().generationMnemonic) },
+                response => {
+                    resolve(response);
+                },
+            );
+        });
+
+        this.setState({
+            mnemonic,
+        });
+        this.generateCipherText();
+    };
+
+    generateCipherText = async () => {
+        const { password } = this.props;
+        const { mnemonic } = this.state;
+
+        const data1 = { password, mnemonic };
+
+        const ciphertext1 = await new Promise(resolve => {
+            window.chrome.runtime.sendMessage(
+                { action: (this.actions.getBackground().getCiphertext), data: data1 },
+                response => {
+                    resolve(response);
+                },
+            );
+        });
+
+        window.chrome.storage.local.set({ ciphertext: ciphertext1 }, () => {
+            console.log(ciphertext1, 'Ciphertext saved');
+        });
+    };
+
     render() {
         const { t } = this.props;
-        const { showSecretWords } = this.state;
+        const { showSecretWords, mnemonic: secretPhrase } = this.state;
 
         const secretPharseStyle = showSecretWords
             ? style.secretPhrase__inputVisibleStyle
@@ -43,8 +88,6 @@ class SecretPhrase extends Component {
         const textareaWrapperStyle = showSecretWords
             ? style.secretPhrase__textareaWrapperVisible
             : style.secretPhrase__textareaWrapperUnvisible;
-
-        const secretPhrase = 'Myself cousin women scout mobile clap rose key illegal noodle price attitude';
 
         return (
             <div className={style.secretPhrase}>
@@ -63,10 +106,7 @@ class SecretPhrase extends Component {
                         {t('secretPhrase.label')}
                     </label>
                 </div>
-                <div
-                    className={textareaWrapperStyle}
-                    onClick={this.showSecretWords}
-                >
+                <div className={textareaWrapperStyle} onClick={this.showSecretWords}>
                     <div className={revealSecretWordsStyle}>
                         <img
                             className={style.secretPhrase__revealSecretWordsVisible_img}
@@ -112,10 +152,23 @@ class SecretPhrase extends Component {
 
 SecretPhrase.defaultProps = {
     t: () => {},
+    password: '',
 };
 
 SecretPhrase.propTypes = {
     t: PropTypes.func,
+    password: PropTypes.string,
 };
 
-export default compose(withTranslation())(SecretPhrase);
+const mapStateToProps = state => {
+    const { password } = state.userPassword;
+
+    return {
+        password,
+    };
+};
+
+export default compose(
+    withTranslation(),
+    connect(mapStateToProps),
+)(SecretPhrase);

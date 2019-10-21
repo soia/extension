@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { Button } from 'antd';
+import { userPasswordActions } from '../../../actions';
 
 import { compose } from '../../../utils';
 import Field from '../../UI/field';
-import {
-    SECRET_PHRASE_PATH,
-} from '../../../constants';
+import { SECRET_PHRASE_PATH } from '../../../constants';
 
 import style from './create-password-page.module.scss';
 
@@ -37,8 +37,8 @@ class CreatePassword extends Component {
         const { password, passwordRepeat } = this.state;
         const errors = {};
 
-        if (password.length < 8) {
-            errors.passwordError = t('error.input', { count: '8' });
+        if (password.length < 3) {
+            errors.passwordError = t('error.input', { count: '3' });
         }
 
         if (password !== passwordRepeat) {
@@ -55,11 +55,8 @@ class CreatePassword extends Component {
             });
 
             if (password && passwordRepeat) {
-                console.log(
-                    password,
-                    passwordRepeat,
-                    'user.password && user.passwordRepeat',
-                );
+                const { dispatch } = this.props;
+                dispatch(userPasswordActions.savePassword(password));
                 history.push(SECRET_PHRASE_PATH);
             }
         }
@@ -138,14 +135,17 @@ class CreatePassword extends Component {
 CreatePassword.defaultProps = {
     t: () => {},
     history: {},
+    dispatch: () => {},
 };
 
 CreatePassword.propTypes = {
     t: PropTypes.func,
     history: PropTypes.object,
+    dispatch: PropTypes.func,
 };
 
 export default compose(
     withTranslation(),
+    connect(),
     withRouter,
 )(CreatePassword);
