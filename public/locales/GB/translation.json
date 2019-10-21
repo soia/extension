@@ -24,13 +24,14 @@
         "successfullyCopied": "Successfully copied",
         "next": "Next",
         "create": "Create",
-        "password": "Password"
+        "password": "Password",
+        "login": "Login"
     },
     "welcome": {
         "title": "Welcome to Decentralized Wallet",
         "subTitle": "The Best Decentralized Wallet - Ethereum Secure Wallet. Allows you to store ether and tokens in decentralized applications.",
         "welcomeBack":"Welcome Back!",
-        "restoreAccount?": "Restore account?",
+        "restoreAccount": "Restore account?",
         "importSeedPhrase": "Import using account seed phrase"
     },
     "createPassword": {
