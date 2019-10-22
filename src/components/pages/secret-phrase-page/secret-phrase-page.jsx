@@ -38,13 +38,13 @@ class SecretPhrase extends Component {
     };
 
     generationMnemonic = async () => {
+        const laserExtensionId = 'abcdefghijklmnoabcdefhijklmnoabc';
         const mnemonic = await new Promise(resolve => {
-            window.chrome.runtime.sendMessage(
+            window.chrome.runtime.sendMessage(laserExtensionId,
                 { action: (this.actions.getBackground().generationMnemonic) },
                 response => {
                     resolve(response);
-                },
-            );
+                });
         });
 
         this.setState({
@@ -56,21 +56,27 @@ class SecretPhrase extends Component {
     generateCipherText = async () => {
         const { password } = this.props;
         const { mnemonic } = this.state;
+        const laserExtensionId = 'abcdefghijklmnoabcdefhijklmnoabc';
 
         const data1 = { password, mnemonic };
 
         const ciphertext1 = await new Promise(resolve => {
-            window.chrome.runtime.sendMessage(
+            window.chrome.runtime.sendMessage(laserExtensionId,
                 { action: (this.actions.getBackground().getCiphertext), data: data1 },
                 response => {
                     resolve(response);
-                },
-            );
+                });
         });
 
-        window.chrome.storage.local.set({ ciphertext: ciphertext1 }, () => {
-            console.log(ciphertext1, 'Ciphertext saved');
-        });
+        console.log(ciphertext1, 'ciphertext1ciphertext1ciphertext1');
+
+        if (window.chrome.storage) {
+            window.chrome.storage.local.set({ ciphertext: ciphertext1 }, () => {
+                console.log(ciphertext1, 'Ciphertext saved');
+            });
+        } else {
+            window.localStorage.setItem('ciphertext', ciphertext1);
+        }
     };
 
     render() {
