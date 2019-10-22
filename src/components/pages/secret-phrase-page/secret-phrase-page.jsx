@@ -14,6 +14,14 @@ import lock from './images/lock.svg';
 import logo from './images/logo.svg';
 import style from './secret-phrase-page.module.scss';
 
+let extensionId = '';
+
+if (window.chrome.storage) {
+    extensionId = window.location.host;
+} else {
+    extensionId = 'abcdefghijklmnoabcdefhijklmnoabc';
+}
+
 class SecretPhrase extends Component {
     actions = new Actions();
 
@@ -39,12 +47,11 @@ class SecretPhrase extends Component {
 
     generationMnemonic = async () => {
         const mnemonic = await new Promise(resolve => {
-            window.chrome.runtime.sendMessage(
+            window.chrome.runtime.sendMessage(extensionId,
                 { action: (this.actions.getBackground().generationMnemonic) },
                 response => {
                     resolve(response);
-                },
-            );
+                });
         });
 
         this.setState({
@@ -56,21 +63,26 @@ class SecretPhrase extends Component {
     generateCipherText = async () => {
         const { password } = this.props;
         const { mnemonic } = this.state;
-
         const data1 = { password, mnemonic };
 
         const ciphertext1 = await new Promise(resolve => {
-            window.chrome.runtime.sendMessage(
+            window.chrome.runtime.sendMessage(extensionId,
                 { action: (this.actions.getBackground().getCiphertext), data: data1 },
                 response => {
                     resolve(response);
-                },
-            );
+                });
         });
 
-        window.chrome.storage.local.set({ ciphertext: ciphertext1 }, () => {
-            console.log(ciphertext1, 'Ciphertext saved');
-        });
+        console.log(window, 'ciphertext1ciphertext1ciphertext1');
+        console.log(ciphertext1, 'ciphertext1');
+
+        if (window.chrome.storage) {
+            window.chrome.storage.local.set({ ciphertext: ciphertext1 }, () => {
+                console.log(ciphertext1, 'Ciphertext saved');
+            });
+        } else {
+            window.localStorage.setItem('ciphertext', ciphertext1);
+        }
     };
 
     render() {
